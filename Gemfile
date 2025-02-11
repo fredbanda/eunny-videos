@@ -38,3 +38,5 @@ gem "tailwindcss-rails", "~> 4.0"
 gem "hotwire-livereload", "~> 2.0", :group => :development
 
 gem "devise", "~> 4.9"
+
+gem "pundit", "~> 2.4"
