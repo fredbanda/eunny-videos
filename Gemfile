@@ -22,6 +22,12 @@ group :development, :test do
   gem "rubocop-rails-omakase", require: false
   gem "rspec-rails", "~> 7.0.0"
   gem "capybara"
+  gem "minitest-reporters"
+  gem "selenium-webdriver"
+  gem "webdrivers"
+  gem "minitest-rails"
+  gem "guard-minitest"
+  gem "guard"
 end
 
 group :development do

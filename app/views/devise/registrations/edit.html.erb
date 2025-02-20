@@ -1,0 +1,75 @@
+<div class="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md mt-8">
+  <h2 class="text-3xl font-bold mb-6 text-gray-800 text-center">Edit <%= @user.name %></h2>
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "space-y-6" }) do |f| %>
+    <%= render "users/shared/error_messages", resource: resource %>
+
+      <div id="user-avatar-preview" class="flex justify-center items-center">
+        <% if resource.avatar.attached? %>
+          <%= image_tag(resource.avatar.variant(resize_to_limit: [100, 100]), class: "h-16 w-16 rounded-full") %>
+        <% else %>
+          <img alt="Default User"
+          width="50"
+          height="50"
+          src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+          class="h-10 w-10 rounded-full"
+          />
+        <% end %>
+    </div>
+
+    <div class="space-y-2">
+      <%= f.label :avatar, class: "block text-sm font-medium text-gray-700" %>
+      <%= f.file_field :avatar, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 py-2 border" %>
+    </div>
+
+
+    <div class="space-y-2">
+      <%= f.label :email, class: "block text-sm font-medium text-gray-700" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 py-2 border" %>
+    </div>
+
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div class="text-sm text-gray-600 mt-2">
+        Currently waiting confirmation for: <%= resource.unconfirmed_email %>
+      </div>
+    <% end %>
+
+    <div class="space-y-2">
+      <%= f.label :password, class: "block text-sm font-medium text-gray-700" %>
+      <span class="text-xs text-gray-500">(leave blank if you don't want to change it)</span>
+      <%= f.password_field :password, autocomplete: "new-password", class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 py-2 border" %>
+      <% if @minimum_password_length %>
+        <span class="text-xs text-gray-500"><%= @minimum_password_length %> characters minimum</span>
+      <% end %>
+    </div>
+
+    <div class="space-y-2">
+      <%= f.label :password_confirmation, class: "block text-sm font-medium text-gray-700" %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 py-2 border" %>
+    </div>
+
+    <div class="space-y-2">
+      <%= f.label :current_password, class: "block text-sm font-medium text-gray-700" %>
+      <span class="text-xs text-gray-500">(we need your current password to confirm your changes)</span>
+      <%= f.password_field :current_password, autocomplete: "current-password", class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 py-2 border" %>
+    </div>
+
+    <div class="pt-4">
+      <%= f.submit "Update", class: "w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-black hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 cursor-pointer" %>
+    </div>
+  <% end %>
+
+  <div class="mt-10 border-t pt-6">
+    <h3 class="text-xl font-bold text-gray-800 mb-4 text-red-600">Cancel my account</h3>
+    <div class="space-y-4">
+      <p class="text-sm text-gray-600">Unhappy?</p>
+      <%= button_to "Cancel my account", 
+          registration_path(resource_name), 
+          data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, 
+          method: :delete, 
+          class: "w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-black hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500" %>
+    </div>
+  </div>
+
+  <%= link_to "Back", :back, class: "mt-6 inline-block text-sm text-indigo-600 hover:text-indigo-500" %>
+</div>
